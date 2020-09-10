@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.customers.web;
 
+import io.honeycomb.beeline.spring.beans.aspects.ChildSpan;
+import io.honeycomb.beeline.tracing.Beeline;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,18 +34,18 @@ import java.util.Optional;
  * @author Maciej Szarlinski
  */
 @RestController
-@Timed("petclinic.pet")
+//@Timed("petclinic.pet")
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 class PetResource {
 
     private final PetRepository petRepository;
     private final OwnerRepository ownerRepository;
 
-
     @GetMapping("/petTypes")
     public List<PetType> getPetTypes() {
-        return petRepository.findPetTypes();
+        List<PetType> petTypes = petRepository.findPetTypes();
+        return petTypes;
     }
 
     @PostMapping("/owners/{ownerId}/pets")
@@ -76,7 +78,7 @@ class PetResource {
         petRepository.findPetTypeById(petRequest.getTypeId())
             .ifPresent(pet::setType);
 
-        log.info("Saving pet {}", pet);
+//        log.info("Saving pet {}", pet);
         return petRepository.save(pet);
     }
 

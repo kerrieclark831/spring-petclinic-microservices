@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.customers.web;
 
+import io.honeycomb.beeline.spring.beans.aspects.ChildSpan;
+import io.honeycomb.beeline.tracing.Beeline;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +38,9 @@ import java.util.Optional;
  */
 @RequestMapping("/owners")
 @RestController
-@Timed("petclinic.owner")
+//@Timed("petclinic.owner")
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 class OwnerResource {
 
     private final OwnerRepository ownerRepository;
@@ -83,7 +85,7 @@ class OwnerResource {
         ownerModel.setCity(ownerRequest.getCity());
         ownerModel.setAddress(ownerRequest.getAddress());
         ownerModel.setTelephone(ownerRequest.getTelephone());
-        log.info("Saving owner {}", ownerModel);
+//        log.info("Saving owner {}", ownerModel);
         ownerRepository.save(ownerModel);
     }
 }

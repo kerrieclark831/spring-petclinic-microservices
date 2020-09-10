@@ -42,8 +42,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@Slf4j
-@Timed("petclinic.visit")
+//@Slf4j
+//@Timed("petclinic.visit")
 class VisitResource {
 
     private final VisitRepository visitRepository;
@@ -55,7 +55,7 @@ class VisitResource {
         @PathVariable("petId") int petId) {
 
         visit.setPetId(petId);
-        log.info("Saving visit {}", visit);
+//        log.info("Saving visit {}", visit);
         return visitRepository.save(visit);
     }
 
